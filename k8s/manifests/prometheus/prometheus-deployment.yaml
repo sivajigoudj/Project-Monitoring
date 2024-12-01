@@ -14,9 +14,12 @@ spec:
       labels:
         app: prometheus
     spec:
+      tolerations:
+      - key: "node-role.kubernetes.io/control-plane"
+        effect: "NoSchedule"
       containers:
       - name: prometheus
-        image: sivaji9412/prometheus:tagname
+        image: sivaji9412/prometheus:1.0
         ports:
         - containerPort: 9090
         volumeMounts:
