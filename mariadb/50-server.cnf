@@ -3,9 +3,3 @@ server-id = 1
 log_bin = /var/log/mysql/mysql-bin.log
 binlog_do_db = testdb
 
-[mysqld]
-server-id = 2  # Unique ID for the slave node
-log_bin = /var/log/mysql/mysql-bin.log  # Enable binary logging (for potential chaining)
-relay_log = /var/log/mysql/mysql-relay.log  # Relay log for slave replication
-read_only = 1  # Ensure the slave is read-only
-binlog_do_db = testdb  # Same database for replication as on the master (optional)
