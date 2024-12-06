@@ -1,0 +1,9 @@
+FROM mariadb:latest
+
+# Copy the custom configuration file and init script with proper permissions
+COPY ./50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+COPY ./init-master.sh /docker-entrypoint-initdb.d/
+
+# Make sure the init script is executable
+RUN chmod +x /docker-entrypoint-initdb.d/init-master.sh
+RUN chown -R mysql:mysql /etc/mysql/mariadb.conf.d
