@@ -1,0 +1,33 @@
+global:
+  resolve_timeout: 5m  # Time after which an alert is considered resolved if it stops firing
+
+route:
+  group_by: ['alertname', 'job']  # Group alerts by alertname and job
+  group_wait: 10s  # Time to wait before sending the first notification for a group
+  group_interval: 5m  # Minimum time between notifications for the same group
+  repeat_interval: 3h  # Time after which a notification is resent if the alert is still firing
+  receiver: 'email-notifications'  # Default receiver
+
+  routes:
+    - match:
+        severity: 'critical'  # Route critical alerts to a different receiver
+      receiver: 'critical-notifications'
+
+receivers:
+  - name: 'email-notifications'
+    email_configs:
+      - to: 'jsivajigoud1997@gmail.com'
+        from: 'alertmanager@example.com'
+        smarthost: 'smtp.example.com:587'
+        auth_username: 'jsivajigoud1997@gmail.com'
+        auth_password: 'ncejleufwbrljsqr'
+        require_tls: true
+
+  - name: 'critical-notifications'
+    email_configs:
+      - to: 'jsivajigoud1997@gmail.com'
+        from: 'alertmanager@example.com'
+        smarthost: 'smtp.example.com:587'
+        auth_username: 'jsivajigoud1997@gmail.com'
+        auth_password: 'ncejleufwbrljsqr'
+        require_tls: true
