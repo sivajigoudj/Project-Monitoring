@@ -7,7 +7,6 @@ LABEL org.opencontainers.image.source="https://github.com/prometheus/prometheus"
 
 # Copy the prometheus.yml configuration file
 COPY prometheus.yml /etc/prometheus/prometheus.yml
-COPY alert_rules.yml /etc/prometheus/alert_rules.yml
 
 # Set the working directory
 WORKDIR /prometheus
@@ -26,6 +25,4 @@ ENTRYPOINT [ "/bin/prometheus" ]
 
 # Define default command to run Prometheus with configuration file and storage path
 CMD [ "--config.file=/etc/prometheus/prometheus.yml", \
-      "--storage.tsdb.path=/prometheus", \
-      "--web.console.templates=/etc/prometheus/consoles", \
-      "--web.console.libraries=/etc/prometheus/console_libraries" ]
+      "--storage.tsdb.path=/prometheus" ]
