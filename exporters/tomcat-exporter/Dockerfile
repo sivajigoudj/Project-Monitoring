@@ -3,7 +3,6 @@ FROM tomcat:9.0-jdk17-openjdk-slim
 ENV TOMCAT_SIMPLECLIENT_VERSION=0.12.0
 ENV TOMCAT_EXPORTER_VERSION=0.0.15
 
-# Install curl and clean up apt cache to keep the image slim
 RUN apt-get update && apt-get install -y curl && \
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
     curl -v --fail --location https://search.maven.org/remotecontent?filepath=io/prometheus/simpleclient/${TOMCAT_SIMPLECLIENT_VERSION}/simpleclient-${TOMCAT_SIMPLECLIENT_VERSION}.jar --output /usr/local/tomcat/lib/simpleclient-${TOMCAT_SIMPLECLIENT_VERSION}.jar && \
